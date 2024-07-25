@@ -3,7 +3,7 @@ import java.util.HashMap;
 public class Main {
   public static void main(String[] args) {
     int[] test = { 3,4,5,6 };
-    int[] returnValue = Solution.twoSum(test, 7);
+    int[] returnValue = SolutionForIncreasing.twoSum(test, 7);
     for (int value : returnValue) {
       System.out.println(value);
     }
@@ -24,6 +24,26 @@ class Solution {
       map.put(complement, i);
     }
 
+    return returnArray;
+  }
+}
+
+class SolutionForIncreasing {
+  public static int[] twoSum(int[] nums, int target) {
+    int[] returnArray = new int[2];
+    int start = 0;
+    int end = nums.length - 1;
+    boolean foundNum = false;
+    while(!foundNum) {
+      if(nums[start] + nums[end] == target) {
+        // wants to be returned 1-indexed
+        returnArray[0] = start + 1;
+        returnArray[1] = end + 1;
+        foundNum = true;
+      }
+      if(nums[start] + nums[end] > target) end--;
+      if(nums[start] + nums[end] < target) start++;
+    }
     return returnArray;
   }
 }
