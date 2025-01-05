@@ -5,24 +5,11 @@ public class App {
     }
 
     public static int maxProfit(int[] prices) {
-        int leftPointer = 0;
-        int rightPointer = 1;
+        int lowest = prices[0];
         int maxProfit = 0;
-        if(prices.length < 2) {
-            return 0;
-        }
-        while(prices[rightPointer] < prices[leftPointer]) {
-            leftPointer = rightPointer;
-            rightPointer += 1;
-        }
-        while(rightPointer < prices.length) {
-            int potentialProfit = prices[rightPointer] - prices[leftPointer];
-            if(potentialProfit > maxProfit) maxProfit = potentialProfit;
-            if(rightPointer + 1 < prices.length && prices[rightPointer + 1] < prices[leftPointer]) {
-                leftPointer = rightPointer + 1;
-                rightPointer = rightPointer + 2;
-            }
-            else  rightPointer += 1;
+        for(int price : prices) {
+            maxProfit = Math.max(maxProfit, price - lowest);
+            lowest = Math.min(lowest, price);
         }
         return maxProfit;
     }
