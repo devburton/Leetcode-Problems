@@ -1,7 +1,7 @@
 import java.util.LinkedHashSet;
 class App {
     public static void main(String[] args) {
-        String s = "xyzxy";
+        String s = "xyzx";
         System.out.println(lengthOfLongestSubstring(s));
     }
     public static int lengthOfLongestSubstring(String s) {
