@@ -3,17 +3,39 @@ import java.util.Iterator;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int[] nums = {4,1,2,1,2};
+        int[] nums = { 4, 1, 2, 1, 2 };
         System.out.println(singleNumber(nums));
     }
 
     public static int singleNumber(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
-        for(int n : nums) {
-            if(set.contains(n)) set.remove(n);
-            else set.add(n);
+        int total = 0;
+        for (int n : nums) {
+            total ^= n;
         }
-        Iterator<Integer> iterator = set.iterator();
-        return iterator.next();
+        return total;
     }
+
+    // public static int singleNumber(int[] nums) {
+    // String contains = "";
+    // int total = 0;
+    // for(int n : nums) {
+    // if(contains.contains("_" + n + "_")) {
+    // total -= n;
+    // } else {
+    // contains += "_" + n + "_";
+    // total += n;
+    // }
+    // }
+    // return total;
+    // }
+
+    // public static int singleNumber(int[] nums) {
+    // HashSet<Integer> set = new HashSet<>();
+    // for(int n : nums) {
+    // if(set.contains(n)) set.remove(n);
+    // else set.add(n);
+    // }
+    // Iterator<Integer> iterator = set.iterator();
+    // return iterator.next();
+    // }
 }
