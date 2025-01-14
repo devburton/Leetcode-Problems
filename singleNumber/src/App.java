@@ -3,7 +3,7 @@ import java.util.Iterator;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int[] nums = { 4, 1, 2, 1, 2 };
+        int[] nums = { 4, 1, 2, 1, 2, 5, 5 };
         System.out.println(singleNumber(nums));
     }
 
