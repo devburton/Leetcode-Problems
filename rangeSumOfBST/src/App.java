@@ -20,24 +20,12 @@ class TreeNode {
 }
 
 class App {
-
     public int rangeSumBST(TreeNode root, int low, int high) {
         if(root == null) return 0;
-        Stack<TreeNode> stack = new Stack<>();
         int sum = 0;
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            int val = node.val;
-            if (val >= low && node.left != null) {
-                stack.push(node.left);
-            }
-            if (val <= high && node.right != null) {
-                stack.push(node.right);
-            }
-            if (val >= low && val <= high)
-                sum += val;
-        }
+        if(root.val >= low && root.val <= high) sum += root.val;
+        if(root.val >= low) sum += rangeSumBST(root.left, low, high);
+        if(root.val <= high) sum += rangeSumBST(root.right, low, high);
         return sum;
     }
 }
