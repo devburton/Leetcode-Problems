@@ -1,28 +1,24 @@
 package validAnagram;
-import java.util.HashMap;
 
 class Main {
     public static void main(String[] args) {
-        String s = "jar", t = "jam";
+        String s = "jam", t = "jar";
         System.out.println(isAnagram(s, t));
     }
 
+    // a = 97
     public static boolean isAnagram(String s, String t) {
         if(s.length() != t.length()) return false;
 
-        HashMap<Character, Integer> sMap = new HashMap<>();
-        HashMap<Character, Integer> tMap = new HashMap<>();
+        int[] count = new int[26];
         
         for(int i = 0; i < s.length(); i++) {
-            sMap.put( s.charAt(i), sMap.getOrDefault( s.charAt(i), 0 ) + 1 );
-            tMap.put( t.charAt(i), tMap.getOrDefault( t.charAt(i), 0 ) + 1 );
+            count[s.charAt(i) - 97]++;
+            count[t.charAt(i) - 97]--;
         }
 
-        for(Character key : sMap.keySet()) {
-            if( ! sMap.get(key).equals( tMap.getOrDefault(key, 0) ) ) return false;
-        }
-        for(Character key : tMap.keySet()) {
-            if( ! tMap.get(key).equals( sMap.getOrDefault(key, 0) ) ) return false;
+        for(int i = 0; i < 26; i++) {
+            if(count[i] != 0) return false;
         }
         return true;
     }
